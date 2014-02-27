@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.irdev.cordova.simplevideoplayer"
+        version="1.0">
+
+    <name>SimpleVideoPlayer</name>
+    <description></description>
+    <keywords>cordova,phonegap,video,player,android</keywords>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova" version="&gt;=3.0.0" />
+    </engines>
+
+    <js-module src="www/simplevideoplayer.js" name="SimpleVideoPlayer">
+        <clobbers target="window.simpleVideoPlayer" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SimpleVideoPlayer">
+                <param name="android-package" value="com.irdev.cordova.simplevideoplayer.SimpleVideoPlayer"/>
+            </feature>
+        </config-file>
+		
+        <source-file src="src/android/SimpleVideoPlayer.java" target-dir="src/com/irdev/cordova/simplevideoplayer" />
+		<source-file src="src/android/SimpleVideoPlayerActivity.java" target-dir="src/com/irdev/cordova/simplevideoplayer" />
+		
+		<config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+        </config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/*/application">
+            <activity android:name="com.irdev.cordova.simplevideoplayer.SimpleVideoPlayerActivity" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:configChanges="keyboardHidden|orientation|screenSize" />
+        </config-file>
+		
+    </platform>
+
+</plugin>
